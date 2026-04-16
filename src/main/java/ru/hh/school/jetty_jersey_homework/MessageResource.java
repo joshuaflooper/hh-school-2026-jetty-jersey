@@ -7,7 +7,7 @@ import jakarta.ws.rs.core.Response;
 import ru.hh.school.jetty_jersey_homework.dto.MessageDto;
 import ru.hh.school.jetty_jersey_homework.dto.MessageSendingDto;
 
-import java.util.List;
+import java.util.Set;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
@@ -19,7 +19,7 @@ public class MessageResource {
 
   @GET
   @Path("/")
-  public List<MessageDto> getAllMessages() {
+  public Set<MessageDto> getAllMessages() {
     return messageService.getAllMessages();
   }
 
