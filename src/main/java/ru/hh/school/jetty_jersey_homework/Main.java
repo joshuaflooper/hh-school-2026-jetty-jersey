@@ -14,8 +14,8 @@ public class Main {
     server.setHandler(context);
 
     ResourceConfig config = new ResourceConfig();
-//    config.register(MainResource.class);
-//    config.register(MessagesResource.class);
+    config.register(MainResource.class);
+    config.register(MessageResource.class);
 
     ServletHolder servletHolder = new ServletHolder(new ServletContainer(config));
 
