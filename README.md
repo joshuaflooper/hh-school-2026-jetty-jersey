@@ -1,2 +1,2 @@
-# hh-school-2026-jetty-jersey
-Домашнее задание по Jetty + Jersey
+# Домашнее задание по Jetty + Jersey
+Выполненное задание и комментарии к нему смотри в ветке solution или PR.
