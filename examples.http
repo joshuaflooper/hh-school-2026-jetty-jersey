@@ -1,0 +1,16 @@
+### Получить все сообщения
+GET http://localhost:8080/message/
+Accept: application/json
+
+### Отправить сообщение
+POST http://localhost:8080/message/send
+Content-type: application/json
+Accept: application/json
+
+{
+    "text": "Hello world!"
+}
+
+### Получить сообщение с заданным id
+GET http://localhost:8080/message/1
+Accept: application/json
