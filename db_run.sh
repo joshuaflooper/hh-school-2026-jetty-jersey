@@ -1,0 +1,1 @@
+docker run --rm --name jetty_jersey_homework -p 5432:5432 -e POSTGRES_PASSWORD=password -d postgres:latest
