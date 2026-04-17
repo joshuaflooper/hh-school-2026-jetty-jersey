@@ -3,4 +3,4 @@ CREATE TABLE messages (
     sender_ip text NOT NULL,
     content text NOT NULL,
     send_on timestamp DEFAULT CURRENT_TIMESTAMP
-);
+); 
