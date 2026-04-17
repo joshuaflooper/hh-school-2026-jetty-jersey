@@ -45,7 +45,7 @@ public class MessageResource {
   @Path("/send")
   @Consumes(APPLICATION_JSON)
   public Response sendMessage(MessageSendingDto messageSendingDto, @Context HttpServletRequest request) {
-    if (messageSendingDto.text() != null) {
+    if (messageSendingDto != null) {
       return Response.ok(messageService.sendMessage(messageSendingDto, request.getRemoteAddr())).build();
     }
     return Response.status(400).entity("Messages without text are not allowed").build();
