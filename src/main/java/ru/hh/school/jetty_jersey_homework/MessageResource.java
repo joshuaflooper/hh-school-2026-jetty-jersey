@@ -18,7 +18,7 @@ import java.util.Set;
 
 import static jakarta.ws.rs.core.MediaType.APPLICATION_JSON;
 
-@Path("/message")
+@Path("/messages")
 @Produces(APPLICATION_JSON)
 public class MessageResource {
 
@@ -31,6 +31,15 @@ public class MessageResource {
     return messageService.getAllMessages();
   }
 
+  @POST
+  @Consumes(APPLICATION_JSON)
+  public Response sendMessage(MessageSendingDto messageSendingDto, @Context HttpServletRequest request) {
+    if (messageSendingDto != null) {
+      return Response.ok(messageService.sendMessage(messageSendingDto, request.getRemoteAddr())).build();
+    }
+    return Response.status(400).entity("Messages without text are not allowed").build();
+  }
+
   @GET
   @Path("/{id}")
   public Response getMessage(@PathParam("id") int id) {
@@ -39,16 +48,6 @@ public class MessageResource {
     } catch (MessageNotFoundException e) {
       return Response.status(404).build();
     }
-  }
-
-  @POST
-  @Path("/send")
-  @Consumes(APPLICATION_JSON)
-  public Response sendMessage(MessageSendingDto messageSendingDto, @Context HttpServletRequest request) {
-    if (messageSendingDto != null) {
-      return Response.ok(messageService.sendMessage(messageSendingDto, request.getRemoteAddr())).build();
-    }
-    return Response.status(400).entity("Messages without text are not allowed").build();
   }
 
   private static SessionFactory createSessionFactory() {

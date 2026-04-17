@@ -1,9 +1,9 @@
 ### Получить все сообщения
-GET http://localhost:8080/message/
+GET http://localhost:8080/messages/
 Accept: application/json
 
 ### Отправить сообщение
-POST http://localhost:8080/message/send
+POST http://localhost:8080/messages/
 Content-type: application/json
 Accept: application/json
 
@@ -12,5 +12,5 @@ Accept: application/json
 }
 
 ### Получить сообщение с заданным id
-GET http://localhost:8080/message/1
+GET http://localhost:8080/messages/1
 Accept: application/json
