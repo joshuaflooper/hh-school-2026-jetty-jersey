@@ -1,6 +1,7 @@
 package ru.hh.school.jetty_jersey_homework.message;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -12,13 +13,17 @@ public class Message {
   @Column(name = "id")
   private Integer id;
 
-  @Column(name = "sender_ip")
+  @Column(name = "sender_ip",
+          columnDefinition = "text NOT NULL")
   private String senderIp;
 
-  @Column(name = "content")
+  @Column(name = "content",
+          columnDefinition = "text NOT NULL")
   private String text;
 
-  @Column(name = "send_on")
+  @Column(name = "send_on",
+          columnDefinition = "timestamp DEFAULT CURRENT_TIMESTAMP")
+  @CreationTimestamp
   private LocalDateTime timestamp;
 
   public Message() {}

@@ -24,7 +24,7 @@ public class MessageDao {
   }
 
   public Set<Message> getAll() {
-    return session().createQuery("select from messages m", Message.class)
+    return session().createQuery("select m from Message m", Message.class)
         .stream()
         .collect(Collectors.toSet());
   }

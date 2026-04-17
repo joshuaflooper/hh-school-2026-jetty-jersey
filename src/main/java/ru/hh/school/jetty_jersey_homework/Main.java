@@ -9,6 +9,7 @@ import org.glassfish.jersey.servlet.ServletContainer;
 public class Main {
 
   static void main() throws Exception {
+
     Server server = new Server(8080);
     ServletContextHandler context = new ServletContextHandler("/");
     server.setHandler(context);

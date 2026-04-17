@@ -7,13 +7,12 @@ import java.util.Optional;
 import java.util.Set;
 
 public class MessageService {
+
   private final MessageDao messageDao;
-  private final SessionFactory sessionFactory;
   private final TransactionHelper transactionHelper;
 
   public MessageService(MessageDao messageDao, SessionFactory sessionFactory) {
     this.messageDao = messageDao;
-    this.sessionFactory = sessionFactory;
     transactionHelper = new TransactionHelper(sessionFactory);
   }
 
