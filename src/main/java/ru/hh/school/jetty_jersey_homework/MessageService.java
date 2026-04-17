@@ -1,25 +1,42 @@
 package ru.hh.school.jetty_jersey_homework;
 
-import ru.hh.school.jetty_jersey_homework.dao.MessageDao;
-import ru.hh.school.jetty_jersey_homework.dto.MessageDto;
-import ru.hh.school.jetty_jersey_homework.dto.MessageSendingDto;
+import ru.hh.school.jetty_jersey_homework.message.MessageDao;
+import ru.hh.school.jetty_jersey_homework.message.Message;
+import ru.hh.school.jetty_jersey_homework.message.MessageResponseDto;
+import ru.hh.school.jetty_jersey_homework.message.MessageSendingDto;
 
 import java.util.Set;
 
 public class MessageService {
-  private final MessageDao messageDao = new MessageDao();
+  private final MessageDao messageDao;
 
-  public MessageDto getMessage(int id) {
-    return messageDao.getById(id);
+  public MessageService(MessageDao messageDao) {
+    this.messageDao = messageDao;
   }
 
-  public Set<MessageDto> getAllMessages() {
+  public MessageResponseDto getMessage(int id) {
+    return EntityToDto(messageDao.getById(id));
+  }
+
+  public Set<Message> getAllMessages() {
     return messageDao.getAll();
   }
 
-  public MessageDto sendMessage(MessageSendingDto messageSendingDto, String senderIp) {
-    MessageDto message = new MessageDto(null, messageSendingDto.text(), senderIp, null);
+  public MessageResponseDto sendMessage(MessageSendingDto messageSendingDto, String senderIp) {
+    Message message = new Message();
+    message.setSenderIp(senderIp);
+    message.setText(messageSendingDto.text());
     messageDao.save(message);
-    return message;
+    return EntityToDto(message);
   }
+
+  private MessageResponseDto EntityToDto(Message message) {
+    return new MessageResponseDto(
+        message.getId(),
+        message.getSenderIp(),
+        message.getText(),
+        message.getTimestamp()
+    );
+  }
+
 }
