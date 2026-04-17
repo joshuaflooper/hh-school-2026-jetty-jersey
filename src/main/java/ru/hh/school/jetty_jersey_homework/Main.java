@@ -17,6 +17,7 @@ public class Main {
     ResourceConfig config = new ResourceConfig();
     config.register(MainResource.class);
     config.register(MessageResource.class);
+    config.register(RequestLoggingInterceptor.class);
 
     ServletHolder servletHolder = new ServletHolder(new ServletContainer(config));
 
