@@ -6,7 +6,7 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.Context;
 import jakarta.ws.rs.core.Response;
 import ru.hh.school.jetty_jersey_homework.message.Message;
-import ru.hh.school.jetty_jersey_homework.message.MessageResponseDto;
+import ru.hh.school.jetty_jersey_homework.message.MessageNotFoundException;
 import ru.hh.school.jetty_jersey_homework.message.MessageSendingDto;
 
 import java.util.Set;
@@ -32,8 +32,12 @@ public class MessageResource {
 
   @GET
   @Path("/{id}")
-  public MessageResponseDto getMessage(@PathParam("id") int id) {
-    return messageService.getMessage(id);
+  public Response getMessage(@PathParam("id") int id) {
+    try {
+      return Response.ok(messageService.getMessage(id)).build();
+    } catch (MessageNotFoundException e) {
+      return Response.status(404).build();
+    }
   }
 
   @POST
