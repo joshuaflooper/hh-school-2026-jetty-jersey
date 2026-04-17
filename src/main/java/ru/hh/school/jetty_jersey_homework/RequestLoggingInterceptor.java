@@ -19,7 +19,8 @@ public class RequestLoggingInterceptor implements ReaderInterceptor {
   public Object aroundReadFrom(ReaderInterceptorContext context) throws IOException, WebApplicationException {
     String body = new BufferedReader(new InputStreamReader(context.getInputStream()))
         .lines()
-        .collect(Collectors.joining("\n"));
+        .map(String::strip)
+        .collect(Collectors.joining());
     logger.info("{} - Incoming request with body.\nHeaders: {}\nBody: {}", LocalDateTime.now(), context.getHeaders(), body);
     context.setInputStream(new ByteArrayInputStream(body.getBytes()));
     return context.proceed();
