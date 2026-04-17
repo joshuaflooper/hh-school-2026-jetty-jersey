@@ -14,3 +14,7 @@ Accept: application/json
 ### Получить сообщение с заданным id
 GET http://localhost:8080/messages/1
 Accept: application/json
+
+### Заглушка в корне
+GET http://localhost:8080/
+Accept: application/json
